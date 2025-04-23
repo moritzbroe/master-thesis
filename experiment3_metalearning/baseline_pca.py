@@ -80,7 +80,6 @@ def run_pca_experiment(x_train, y_train, x_test, y_test, device):
             y_train,
             x_test_pca_t,
             y_test,
-            l2_reg=0.0,
             max_iter=3000,
         )
         test_accs.append(_test_acc)
