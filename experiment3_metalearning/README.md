@@ -8,8 +8,8 @@ The main problem with regards to implementing this is that using a standard pyto
 Hence, the parameters $\theta$ have to be seperated into a structure like a list/dictionary of tensors and passed to the update function (and also to the model for calculating outputs). The implementation here only implements fully local, hebbian-like learning rules for lateral inhibitory networks, but one could relatively easily add other types of learning rules and models.
 
 ## Usage
-MNIST is automatically downloaded.
-the three baseline files and find_oja.py can be run without arguments, see explanations below.
+MNIST is automatically downloaded.\
+the three baseline files and find_oja.py can be run without arguments, see explanations below.\
 main.py provides some examples for running it (those from the thesis) at the top of the code as comments, but offers a lot more command line arguments. see comments in code.
 
 ## Implementation
@@ -27,14 +27,14 @@ initializers are pytorch modules that can be called to get initial parameters fo
 
 ### baselines
 these three python files are for setting baselines: \
-```baseline_pca.py``` can be run directly and does uses different values for the feature dimension k from 1 to 28^2, extracts the first k principal components from the mnist dataset, and calculates the accuarcy obtained with a linear classifier.
-```baseline_mlp.py``` uses a single fully connected layer with k outputs (k can be set at the start of the code), randomly initialized, to extract features from mnist and calculates the accuracy of a linear classifier evaluated on top of them. the initialization parameters are then trained through hypergradient descent (proper initialization significantly improves linear evaluation performance for large k).
-```baseline_vicreg``` trains a simple MLP with layer sizes 256,32 with vicreg on mnist and checks the linear classifier's performance trained on top of the features.
+```baseline_pca.py``` can be run directly and does uses different values for the feature dimension k from 1 to 28^2, extracts the first k principal components from the mnist dataset, and calculates the accuarcy obtained with a linear classifier.\
+```baseline_mlp.py``` uses a single fully connected layer with k outputs (k can be set at the start of the code), randomly initialized, to extract features from mnist and calculates the accuracy of a linear classifier evaluated on top of them. the initialization parameters are then trained through hypergradient descent (proper initialization significantly improves linear evaluation performance for large k).\
+```baseline_vicreg``` trains a simple MLP with layer sizes 256,32 with vicreg on mnist and checks the linear classifier's performance trained on top of the features.\
 
 ### train_test
-```train.py``` applies a learning rule for several steps and returns the updated parameters. it implements checkpointing (which is simple with the above implementation).
-```linear_probe.py``` trains a linear classifier on top of the representations extracted with a model on some dataset and passes a final batch through it, yielding a loss value that is connected to the computational graph 
-```hypgraddesc.py``` implements the hypergradient descent procedure, mainly using the function from ```train.py```, with many options. In particular, one can also implement things like truncated backpropagation (where not all of the updates are differentiated through) with different options. also, one passes a loss function which is evaluated on the final parameters and is used to guide the evolution of the hyperparameters
+```train.py``` applies a learning rule for several steps and returns the updated parameters. it implements checkpointing (which is simple with the above implementation).\
+```linear_probe.py``` trains a linear classifier on top of the representations extracted with a model on some dataset and passes a final batch through it, yielding a loss value that is connected to the computational graph \
+```hypgraddesc.py``` implements the hypergradient descent procedure, mainly using the function from ```train.py```, with many options. In particular, one can also implement things like truncated backpropagation (where not all of the updates are differentiated through) with different options. also, one passes a loss function which is evaluated on the final parameters and is used to guide the evolution of the hyperparameters\
 
 ### ```main.py```
 Creates a lateral inhibitory MLP and the initializer and learning rule (either for unsupervised or self-supervised learning) described above and runs the hypergradient descent function on it. in particular, the linear_probe loss is used as a loss function.
