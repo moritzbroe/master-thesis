@@ -2,6 +2,7 @@
 These python files allow for training models with a self-supervised loss using gradient-isolated blocks, where each block uses different augmentations. These augmentation parameters can then be optimized using the optuna library. Everything only tested with STL-10.
 
 ## Implementation and Usage
+STL-10 is automatically downloaded when running one of the runnable files, which takes some time.
 ### ssl_loader.py
 Creates mostly standard pytorch dataloaders that return pairs of augmented images. For efficiency, the dataloader is created with ```get_basic_ssl_loader``` and then different transformation parameters can be set using ```set_transformations```. This prevents the dataset being reloaded for the training of every block (as each block uses different augmentations and would hence require a new dataloader). Run ssl_loader.py directly to visualize samples, change the parameters at the end of the code to use different augmentations.
 
