@@ -37,7 +37,7 @@ def vicreg_loss(
     eps=1e-6,
     mode='full',
 ):
-    '''the vicreg loss function. global average pooling mode (gap) averages over spatial dimensions, then applies vicreg loss. 'full' mode applies vicreg loss to each spatial dimension, then averages over spatial dimensions.'''
+    '''the vicreg loss function. global average pooling mode (gap) averages over spatial dimensions, then applies vicreg loss. 'full' mode applies vicreg loss to each spatial position, then averages over spatial positions.'''
     assert z1.shape == z2.shape
     if mode == 'gap':
         if z1.dim() == 4:
