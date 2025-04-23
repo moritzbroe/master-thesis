@@ -17,7 +17,7 @@ device = 'cuda'
 
 def get_initial_params():
     # average the best 5 trial's parameters from the previous tpe study
-    filename = 'tpe_final.db'
+    filename = 'study_tpe.db'
     study_name='study'
     # plot everything available in optuna
     study = optuna.load_study(
