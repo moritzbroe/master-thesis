@@ -5,4 +5,5 @@ Setting up a conda environment like this should allow running all code:\
 ```conda activate localssl```\
 ```pip install optuna cmaes scikit-learn albumentations matplotlib scikit-image```\
 In particular, the non-standard librariy cuML is used for accelerating logistic regression in experiments 2 and 3, and albumentations is used for accelerating image augmentations in experiment 2
+
 NVIDIA Gpu is necessary for the code to work.
